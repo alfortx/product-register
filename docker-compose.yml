@@ -1,0 +1,28 @@
+version: '3'
+
+volumes:
+  db-data:
+
+services:
+  web:
+    build: .
+    ports:
+      - '3000:3000'
+    volumes: #-v
+      - '.:/product-register'
+    environment: #create_env-variables_in_container
+      - 'DATABASE_PASSWORD=postgres'
+    tty: true #-t
+    stdin_open: true #-i
+    depends_on: #order_of_running
+      - db
+    links: #enable_accessing
+      - db
+
+  db: #service_name = host_name
+    image: postgres
+    volumes:
+      - 'db-data:/var/lib/postgresql/data'
+    environment:
+      - 'POSTGRES_USER=postgres'
+      - 'POSTGRES_PASSWORD=postgres'
