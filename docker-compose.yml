@@ -26,4 +26,4 @@ services:
     environment:
       - 'POSTGRES_USER=postgres'
       - 'POSTGRES_PASSWORD=postgres'
-      _ 'POSTGRES_HOST_AUTH_METHOD=trust' #run_notl_ocal(travis ci)
+      - 'POSTGRES_HOST_AUTH_METHOD=trust' #run_notl_ocal(travis ci)
